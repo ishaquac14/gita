@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
@@ -29,3 +30,33 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get(
+    '/stock',
+    [StockController::class, 'index']
+)->name('stock.index');
+
+Route::get(
+    '/stock/create',
+    [StockController::class, 'create']
+)->name('stock.create');
+
+Route::get(
+    '/stock/edit/{id}',
+    [StockController::class, 'edit']
+)->name('stock.edit');
+
+Route::put(
+    '/stock/update/{id}',
+    [StockController::class, 'update']
+)->name('stock.update');
+
+Route::get(
+    '/stock/destroy/{id}',
+    [StockController::class, 'destroy']
+)->name('stock.destroy');
+
+Route::post(
+    '/stock/store',
+    [StockController::class, 'store']
+)->name('stock.store');
