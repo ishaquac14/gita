@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('tanggal');
             $table->string('id_barang');
             $table->string('penerima');
-            $table->string('qty');
+            $table->integer('qty');
             $table->timestamps();
         });
     }

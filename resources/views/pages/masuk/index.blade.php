@@ -18,7 +18,7 @@
                         <tr>
                             <th>No</th>
                             <th>Tanggal</th>
-                            <th>ID Barang</th>
+                            <th>ID Device</th>
                             <th>Penerima</th>
                             <th>Qty</th>
                             <th>Action</th>
@@ -28,9 +28,10 @@
                         @foreach ($masuks as $masuk)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>#</td>
-                                <td>#</td>
-                                <td>#</td>
+                                <td>{{ $masuk->tanggal }}</td>
+                                <td>{{ $masuk->stock->id_device }}</td>
+                                <td>{{ $masuk->penerima }}</td>
+                                <td>{{ $masuk->qty }}</td>
                                 <td>
                                     <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#editModal">
@@ -50,28 +51,36 @@
     </div>
 
     <!-- The Modal -->
-    {{-- <div class="modal fade" id="myModal">
+    <div class="modal fade" id="myModal">
         <div class="modal-dialog">
             <div class="modal-content">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Tambah Barang Barang Masuk</h4>
+                    <h4 class="modal-title">Tambah Barang Masuk</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form method="POST" action="{{ route('stock.store') }}">
+                    <form method="POST" action="{{ route('masuk.store') }}">
                         @csrf
                         <div class="mt-3">
-                            <input type="text" name="nama_barang" placeholder="Nama Barang" class="form-control">
+                            <input type="date" name="tanggal" class="form-control">
                         </div>
                         <div class="mt-3">
-                            <input type="text" name="deskripsi" placeholder="Deskripsi" class="form-control">
+                            <select name="id_barang" class="form-control">
+                                <option selected disabled>-- Pilih Barang --</option>
+                                @foreach ($stocks as $stock)
+                                    <option value="{{ $stock->id }}">{{ $stock->id_device }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="mt-3">
-                            <input type="number" name="stock" class="form-control" placeholder="Stock">
+                            <input type="text" name="penerima" class="form-control" placeholder="Penerima">
+                        </div>
+                        <div class="mt-3">
+                            <input type="number" name="qty" class="form-control" placeholder="Qty">
                         </div>
 
                         <!-- Modal footer -->
@@ -83,10 +92,10 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <!-- The Modal Edit -->
-    {{-- @foreach ($stocks as $stock)
+    @foreach ($masuks as $masuk)
         <div class="modal fade" id="editModal">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -99,20 +108,26 @@
 
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <form method="POST" action="{{ route('stock.update', ['id' => $stock->id]) }}">
+                        <form method="POST" action="{{ route('masuk.update', ['id' => $masuk->id]) }}">
                             @method('PUT')
                             @csrf
                             <div class="mt-3">
-                                <input type="text" name="nama_barang" placeholder="Nama Barang" class="form-control"
-                                    value="{{ $stock->nama_barang }}">
+                                <input type="date" name="tanggal" class="form-control" value="{{ $masuk->tanggal }}">
                             </div>
                             <div class="mt-3">
-                                <input type="text" name="deskripsi" placeholder="Deskripsi" class="form-control"
-                                    value="{{ $stock->deskripsi }}">
+                                <select name="id_barang" class="form-control" readonly>
+                                    @foreach ($stocks as $stock)
+                                        <option value="{{ $stock->id }}">{{ $stock->nama_barang }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="mt-3">
-                                <input type="number" name="stock" class="form-control" placeholder="Stock"
-                                    value="{{ $stock->stock }}">
+                                <input type="text" name="penerima" class="form-control"
+                                    value="{{ $masuk->penerima }}">
+                            </div>
+                            <div class="mt-3">
+                                <input type="number" name="qty" class="form-control"
+                                    value="{{ $masuk->qty }}">
                             </div>
 
                             <!-- Modal footer -->
@@ -125,10 +140,10 @@
                 </div>
             </div>
         </div>
-    @endforeach --}}
+    @endforeach
 
-    <!-- The Modal Edit -->
-    {{-- @foreach ($stocks as $stock)
+    <!-- The Modal Destroy -->
+    @foreach ($masuks as $masuk)
         <div class="modal fade" id="destroyModal">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -141,12 +156,12 @@
 
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <form method="POST" action="{{ route('stock.destroy', ['id' => $stock->id]) }}">
+                        <form method="GET" action="{{ route('masuk.destroy', ['id' => $stock->id]) }}">
                             @method('DELETE')
                             @csrf
 
                             <div class="align-middle">
-                                <p>Apakah Anda Yakin Akan Menghapus ?</p>
+                                <p>Are you sure?</p>
                             </div>
 
                             <!-- Modal footer -->
@@ -159,5 +174,5 @@
                 </div>
             </div>
         </div>
-    @endforeach --}}
+    @endforeach
 @endsection

@@ -70,3 +70,28 @@ Route::get(
     '/masuk',
     [MasukController::class, 'index']
 )->name('masuk.index');
+
+Route::get(
+    '/masuk/create',
+    [MasukController::class, 'create']
+)->name('masuk.create');
+
+Route::post(
+    '/masuk/store',
+    [MasukController::class, 'store']
+)->name('masuk.store');
+
+Route::get(
+    '/masuk/edit/{id}',
+    [MasukController::class, 'edit']
+)->name('masuk.edit');
+
+Route::put(
+    '/masuk/update/{id}',
+    [MasukController::class, 'update']
+)->name('masuk.update');
+
+Route::get(
+    '/masuk/destroy/{id}',
+    [MasukController::class, 'destroy']
+)->name('masuk.destroy');

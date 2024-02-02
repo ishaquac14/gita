@@ -17,6 +17,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>ID Perangkat</th>
                             <th>Nama Barang</th>
                             <th>Deskripsi</th>
                             <th>Stock</th>
@@ -27,6 +28,7 @@
                         @foreach ($stocks as $stock)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ $stock->id_device }}</td>
                                 <td>{{ $stock->nama_barang }}</td>
                                 <td>{{ $stock->deskripsi }}</td>
                                 <td>{{ $stock->stock }}</td>
@@ -63,6 +65,9 @@
                 <div class="modal-body">
                     <form method="POST" action="{{ route('stock.store') }}">
                         @csrf
+                        <div class="mt-3">
+                            <input type="text" name="id_device" placeholder="Scan ID" class="form-control">
+                        </div>
                         <div class="mt-3">
                             <input type="text" name="nama_barang" placeholder="Nama Barang" class="form-control">
                         </div>
@@ -101,6 +106,10 @@
                         <form method="POST" action="{{ route('stock.update', ['id' => $stock->id]) }}">
                             @method('PUT')
                             @csrf
+                            <div class="mt-3">
+                                <input type="text" name="id_device" class="form-control"
+                                    value="{{ $stock->id_device }}">
+                            </div>
                             <div class="mt-3">
                                 <input type="text" name="nama_barang" placeholder="Nama Barang" class="form-control"
                                     value="{{ $stock->nama_barang }}">
@@ -145,7 +154,7 @@
                          @csrf
 
                          <div class="align-middle">
-                             <p>Apakah Anda Yakin Akan Menghapus ?</p>
+                             <p>Are you sure?</p>
                          </div>
 
                          <!-- Modal footer -->

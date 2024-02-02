@@ -16,7 +16,8 @@ class StockController extends Controller
 
     public function create()
     {
-        return view('pages.stock.index');
+        $stocks = Stock::all();
+        return view('pages.stock.index', compact('stocks'));
     }
 
     public function edit($id)
@@ -35,12 +36,14 @@ class StockController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'id_device' => 'string|required',
             'nama_barang' => 'string|required',
             'deskripsi'=> 'string|required',
-            'stock'=> 'numeric|required'
+            'stock'=> 'integer|required'
         ]);
 
         $data = $request->only([
+            'id_device',
             'nama_barang',
             'deskripsi',
             'stock'
@@ -54,20 +57,23 @@ class StockController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'id_device' => 'string|required',
             'nama_barang' => 'string|required',
             'deskripsi'=> 'string|required',
-            'stock'=> 'numeric|required'
+            'stock'=> 'integer|required'
         ]);
 
         $stock = Stock::findOrFail($id);
 
         $data = $request->only([
+            'id_device',
             'nama_barang',
             'deskripsi',
             'stock'
         ]);
 
         $stock->update($data);
+        
         return redirect()->route('stock.index')->with('success', 'Data Berhasil Diupdate !');
     }
 }
