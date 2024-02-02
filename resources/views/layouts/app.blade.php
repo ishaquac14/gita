@@ -22,8 +22,8 @@
                 class="fas fa-bars"></i></button>
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto" style="margin-right: 20px">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+            <li class="nav-item">
+                <a class="nav-link" id="navbarDropdown" href="#" role="button"
                     data-bs-toggle="dropdown" aria-expanded="false">{{ Auth::user()->name }}<i style="margin-left: 20px"
                         class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -49,7 +49,7 @@
                         <hr class="sidebar-divider my-0" style="border-color: #dddddd;">
                         <div class="mt-2 mb-2">
                             <a class="nav-link" href="/dashboard">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-solid fa-gauge"></i></div>
                                 Dashboard
                             </a>
                         </div>
@@ -57,21 +57,21 @@
                         <div class="mt-3">
                             <a class="nav-link" href="{{ route('stock.index') }}">
                                 <div class="sb-nav-link-icon">
-                                    <i class="fas fa-chart-area"></i>
+                                    <i class="fas fa-solid fa-laptop"></i>
                                 </div>Stock Barang
                             </a>
                         </div>
                         <div>
-                            <a class="nav-link" href="{{ route('stock.index') }}">
+                            <a class="nav-link" href="{{ route('masuk.index') }}">
                                 <div class="sb-nav-link-icon">
-                                    <i class="fas fa-solid fa-laptop"></i>
+                                    <i class="fas fa-solid fa-arrow-up"></i>
                                 </div>Barang Masuk
                             </a>
                         </div>
                         <div>
-                            <a class="nav-link" href="{{ route('stock.index') }}">
+                            <a class="nav-link" href="#">
                                 <div class="sb-nav-link-icon">
-                                    <i class="fas fa-chart-area"></i>
+                                    <i class="fas fa-solid fa-arrow-down"></i>
                                 </div>Barang Keluar
                             </a>
                         </div>

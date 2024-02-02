@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MasukController;
+use App\Http\Controllers\StockController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// Route untuk Stock Barang
 
 Route::get(
     '/stock',
@@ -60,3 +63,10 @@ Route::post(
     '/stock/store',
     [StockController::class, 'store']
 )->name('stock.store');
+
+// Route untuk Barang Masuk
+
+Route::get(
+    '/masuk',
+    [MasukController::class, 'index']
+)->name('masuk.index');

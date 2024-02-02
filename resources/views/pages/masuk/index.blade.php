@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container-fluid px-4">
-        <h3 class="mt-4">Stock Barang</h3>
+        <h3 class="mt-4">Barang Masuk</h3>
         <ol class="breadcrumb mb-5">
-            <li class="breadcrumb-item active">Stock All Device</li>
+            <li class="breadcrumb-item active">Incoming Item Report</li>
         </ol>
         <div class="card mb-4">
             <div class="card-header">
@@ -17,19 +17,20 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Barang</th>
-                            <th>Deskripsi</th>
-                            <th>Stock</th>
+                            <th>Tanggal</th>
+                            <th>ID Barang</th>
+                            <th>Penerima</th>
+                            <th>Qty</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($stocks as $stock)
+                        @foreach ($masuks as $masuk)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $stock->nama_barang }}</td>
-                                <td>{{ $stock->deskripsi }}</td>
-                                <td>{{ $stock->stock }}</td>
+                                <td>#</td>
+                                <td>#</td>
+                                <td>#</td>
                                 <td>
                                     <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#editModal">
@@ -49,13 +50,13 @@
     </div>
 
     <!-- The Modal -->
-    <div class="modal fade" id="myModal">
+    {{-- <div class="modal fade" id="myModal">
         <div class="modal-dialog">
             <div class="modal-content">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Tambah Barang</h4>
+                    <h4 class="modal-title">Tambah Barang Barang Masuk</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
@@ -82,10 +83,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- The Modal Edit -->
-    @foreach ($stocks as $stock)
+    {{-- @foreach ($stocks as $stock)
         <div class="modal fade" id="editModal">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -124,39 +125,39 @@
                 </div>
             </div>
         </div>
-    @endforeach
+    @endforeach --}}
 
-     <!-- The Modal Edit -->
-     @foreach ($stocks as $stock)
-     <div class="modal fade" id="destroyModal">
-         <div class="modal-dialog">
-             <div class="modal-content">
+    <!-- The Modal Edit -->
+    {{-- @foreach ($stocks as $stock)
+        <div class="modal fade" id="destroyModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
 
-                 <!-- Modal Header -->
-                 <div class="modal-header">
-                     <h4 class="modal-title">Hapus Barang</h4>
-                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                 </div>
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Hapus Barang</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
 
-                 <!-- Modal body -->
-                 <div class="modal-body">
-                     <form method="GET" action="{{ route('stock.destroy', ['id' => $stock->id]) }}">
-                         @method('DELETE')
-                         @csrf
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form method="POST" action="{{ route('stock.destroy', ['id' => $stock->id]) }}">
+                            @method('DELETE')
+                            @csrf
 
-                         <div class="align-middle">
-                             <p>Apakah Anda Yakin Akan Menghapus ?</p>
-                         </div>
+                            <div class="align-middle">
+                                <p>Apakah Anda Yakin Akan Menghapus ?</p>
+                            </div>
 
-                         <!-- Modal footer -->
-                         <div class="modal-footer">
-                             <button type="submit" class="btn btn-danger">Delete</button>
-                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                         </div>
-                     </form>
-                 </div>
-             </div>
-         </div>
-     </div>
- @endforeach
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach --}}
 @endsection
