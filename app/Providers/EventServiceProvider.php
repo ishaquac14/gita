@@ -18,8 +18,10 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-    ];
-
+        'App\Events\BarangMasuk' => [
+            'App\Listeners\UpdateStockQty',
+        ],
+    ];    
     /**
      * Register any events for your application.
      */

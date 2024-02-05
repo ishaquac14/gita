@@ -18,7 +18,7 @@
                         <tr>
                             <th>No</th>
                             <th>Tanggal</th>
-                            <th>ID Device</th>
+                            <th>ID Perangkat</th>
                             <th>Penerima</th>
                             <th>Qty</th>
                             <th>Action</th>
@@ -29,7 +29,11 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $masuk->tanggal }}</td>
-                                <td>{{ $masuk->stock->id_device }}</td>
+                                <td>
+                                    @foreach ($stocks as $stock)
+                                        <option value="{{ $stock->id }}">{{ $stock->id_device }}</option>
+                                    @endforeach
+                                </td>
                                 <td>{{ $masuk->penerima }}</td>
                                 <td>{{ $masuk->qty }}</td>
                                 <td>
@@ -57,7 +61,7 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Tambah Barang Masuk</h4>
+                    <h4 class="modal-title">Barang Masuk</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
@@ -117,17 +121,15 @@
                             <div class="mt-3">
                                 <select name="id_barang" class="form-control" readonly>
                                     @foreach ($stocks as $stock)
-                                        <option value="{{ $stock->id }}">{{ $stock->nama_barang }}</option>
+                                        <option value="{{ $stock->id }}">{{ $stock->id_device }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="mt-3">
-                                <input type="text" name="penerima" class="form-control"
-                                    value="{{ $masuk->penerima }}">
+                                <input type="text" name="penerima" class="form-control" value="{{ $masuk->penerima }}">
                             </div>
                             <div class="mt-3">
-                                <input type="number" name="qty" class="form-control"
-                                    value="{{ $masuk->qty }}">
+                                <input type="number" name="qty" class="form-control" value="{{ $masuk->qty }}">
                             </div>
 
                             <!-- Modal footer -->
@@ -156,7 +158,7 @@
 
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <form method="GET" action="{{ route('masuk.destroy', ['id' => $stock->id]) }}">
+                        <form method="GET" action="{{ route('masuk.destroy', ['id' => $masuk->id]) }}">
                             @method('DELETE')
                             @csrf
 

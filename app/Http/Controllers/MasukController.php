@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MasukBarang;
 use App\Models\Masuk;
 use App\Models\Stock;
 use Illuminate\Http\Request;

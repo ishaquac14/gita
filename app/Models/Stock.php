@@ -11,8 +11,8 @@ class Stock extends Model
     protected $table = 'stocks';
     protected $guarded = [];
 
-    public function masuk()
-    {
-        return $this->hasMany(Masuk::class);
-    }
+    // public function masuk()
+    // {
+    //     return $this->belongsTo(Masuk::class);
+    // }
 }
