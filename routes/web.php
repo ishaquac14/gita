@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MasukController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\KeluarController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -95,3 +96,15 @@ Route::get(
     '/masuk/destroy/{id}',
     [MasukController::class, 'destroy']
 )->name('masuk.destroy');
+
+// Route barang keluar
+
+Route::get(
+    '/keluar',
+    [KeluarController::class, 'index']
+)->name('keluar.index');
+
+Route::post(
+    '/keluar/store',
+    [KeluarController::class, 'store']
+)->name('keluar.store');

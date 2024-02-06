@@ -69,7 +69,7 @@
                             </a>
                         </div>
                         <div>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('keluar.index') }}">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-solid fa-arrow-down"></i>
                                 </div>Barang Keluar
