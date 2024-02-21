@@ -6,6 +6,25 @@
         <ol class="breadcrumb mb-5">
             <li class="breadcrumb-item active">Stock All Device</li>
         </ol>
+
+        @if (Session::has('success'))
+            <div class="alert alert-success" role="alert">
+                {{ Session::get('success') }}
+            </div>
+        @endif
+
+        @if (Session::has('warning'))
+            <div class="alert alert-warning" role="alert">
+                {{ Session::get('warning') }}
+            </div>
+        @endif
+
+        @if (Session::has('danger'))
+            <div class="alert alert-danger" role="alert">
+                {{ Session::get('danger') }}
+            </div>
+        @endif
+
         <div class="card mb-4">
             <div class="card-header">
                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal">

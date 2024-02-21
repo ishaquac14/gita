@@ -6,6 +6,25 @@
         <ol class="breadcrumb mb-5">
             <li class="breadcrumb-item active">Outgoing Item Report</li>
         </ol>
+
+        @if (Session::has('success'))
+            <div class="alert alert-success" role="alert">
+                {{ Session::get('success') }}
+            </div>
+        @endif
+
+        @if (Session::has('warning'))
+            <div class="alert alert-warning" role="alert">
+                {{ Session::get('warning') }}
+            </div>
+        @endif
+
+        @if (Session::has('danger'))
+            <div class="alert alert-danger" role="alert">
+                {{ Session::get('danger') }}
+            </div>
+        @endif
+
         <div class="card mb-4">
             <div class="card-header">
                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal">
@@ -29,11 +48,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $keluar->tanggal }}</td>
-                                <td>
-                                    @foreach ($stocks as $stock)
-                                        <option value="{{ $stock->id }}">{{ $stock->id_device }}</option>
-                                    @endforeach
-                                </td>
+                                <td>{{ $keluar->id_barang }}</td>
                                 <td>{{ $keluar->pengambil }}</td>
                                 <td>{{ $keluar->qty }}</td>
                                 <td>
@@ -99,7 +114,7 @@
     </div>
 
     <!-- The Modal Edit -->
-    {{-- @foreach ($keluars as $keluar)
+    @foreach ($keluars as $keluar)
         <div class="modal fade" id="editModal">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -126,7 +141,8 @@
                                 </select>
                             </div>
                             <div class="mt-3">
-                                <input type="text" name="penerima" class="form-control" value="{{ $keluar->penerima }}">
+                                <input type="text" name="pengambil" class="form-control"
+                                    value="{{ $keluar->pengambil }}">
                             </div>
                             <div class="mt-3">
                                 <input type="number" name="qty" class="form-control" value="{{ $keluar->qty }}">
@@ -142,10 +158,10 @@
                 </div>
             </div>
         </div>
-    @endforeach --}}
+    @endforeach
 
     <!-- The Modal Destroy -->
-    {{-- @foreach ($keluars as $keluar)
+    @foreach ($keluars as $keluar)
         <div class="modal fade" id="destroyModal">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -176,5 +192,5 @@
                 </div>
             </div>
         </div>
-    @endforeach --}}
+    @endforeach
 @endsection

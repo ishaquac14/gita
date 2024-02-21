@@ -92,7 +92,7 @@ class MasukController extends Controller
 
         $masuk->update($data);
 
-        return redirect()->route('masuk.index')->with('success', 'Data Berhasil Diupdate');
+        return redirect()->route('masuk.index')->with('warning', 'Data Berhasil Diupdate !');
     }
 
     /**
@@ -102,6 +102,6 @@ class MasukController extends Controller
     {
         $masuk = Masuk::findOrfail($id);
         $masuk->delete();
-        return redirect()->route('masuk.index')->with('error', 'Data Berhasil Dihapus !');
+        return redirect()->route('masuk.index')->with('danger', 'Data Berhasil Dihapus !');
     }
 }

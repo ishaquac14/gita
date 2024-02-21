@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Masuk;
+use App\Models\Keluar;
 use App\Models\Stock;
 use Illuminate\Http\Request;
 
@@ -30,7 +32,7 @@ class StockController extends Controller
     {
         $stock = Stock::findOrfail($id);
         $stock->delete();
-        return redirect()->route('stock.index')->with('error', 'Data Berhasil Dihapus !');
+        return redirect()->route('stock.index')->with('danger', 'Data Berhasil Dihapus !');
     }
 
     public function store(Request $request)
@@ -38,8 +40,8 @@ class StockController extends Controller
         $request->validate([
             'id_device' => 'string|required',
             'nama_barang' => 'string|required',
-            'deskripsi'=> 'string|required',
-            'stock'=> 'integer|required'
+            'deskripsi' => 'string|required',
+            'stock' => 'integer|required'
         ]);
 
         $data = $request->only([
@@ -59,8 +61,8 @@ class StockController extends Controller
         $request->validate([
             'id_device' => 'string|required',
             'nama_barang' => 'string|required',
-            'deskripsi'=> 'string|required',
-            'stock'=> 'integer|required'
+            'deskripsi' => 'string|required',
+            'stock' => 'integer|required'
         ]);
 
         $stock = Stock::findOrFail($id);
@@ -73,7 +75,7 @@ class StockController extends Controller
         ]);
 
         $stock->update($data);
-        
-        return redirect()->route('stock.index')->with('success', 'Data Berhasil Diupdate !');
+
+        return redirect()->route('stock.index')->with('warning', 'Data Berhasil Diupdate !');
     }
 }

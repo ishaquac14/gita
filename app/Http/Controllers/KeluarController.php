@@ -72,16 +72,36 @@ class KeluarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateKeluarRequest $request, Keluar $keluar)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'tanggal' => 'date|required',
+            'id_barang' => 'string|required',
+            'pengambil' => 'string|required',
+            'qty' => 'integer|required',
+        ]);
+
+        $keluar = Keluar::findOrfail($id);
+
+        $data = $request->only([
+            'tanggal',
+            'id_barang',
+            'pengambil',
+            'qty'
+        ]);
+
+        $keluar->update($data);
+
+        return redirect()->route('keluar.index')->with('warning', 'Data Berhasil Diupdate !');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Keluar $keluar)
+    public function destroy($id)
     {
-        //
+        $keluar = Keluar::findOrfail($id);
+        $keluar->delete();
+        return redirect()->route('keluar.index')->with('danger', 'Data Berhasil Dihapus !');
     }
 }

@@ -10,9 +10,4 @@ class Stock extends Model
     use HasFactory;
     protected $table = 'stocks';
     protected $guarded = [];
-
-    // public function masuk()
-    // {
-    //     return $this->belongsTo(Masuk::class);
-    // }
 }

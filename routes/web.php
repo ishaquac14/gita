@@ -108,3 +108,18 @@ Route::post(
     '/keluar/store',
     [KeluarController::class, 'store']
 )->name('keluar.store');
+
+Route::put(
+    '/keluar/update/{id}',
+    [KeluarController::class, 'update']
+)->name('keluar.update');
+
+Route::get(
+    '/keluar/edit/{id}',
+    [KeluarController::class, 'edit']
+)->name('keluar.edit');
+
+Route::get(
+    '/keluar/destroy/{id}',
+    [KeluarController::class, 'destroy']
+)->name('keluar.destroy');
